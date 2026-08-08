@@ -3,23 +3,15 @@
 }
 
 :root {
-
     --bg: #0b1120;
-
     --ring: #334155;
-
     --inner-ring: #1e40af;
-
     --text: #e2e8f0;
-
     --muted: #94a3b8;
 
     --blue: #60a5fa;
-
     --green: #34d399;
-
     --red: #f87171;
-
     --gold: #fbbf24;
 }
 
@@ -29,13 +21,10 @@
 ========================= */
 
 body {
-
     margin: 0;
-
     min-height: 100vh;
 
     display: grid;
-
     place-items: center;
 
     background:
@@ -59,7 +48,6 @@ body {
 ========================= */
 
 .clock-app {
-
     width: min(92vw, 700px);
 
     text-align: center;
@@ -71,10 +59,10 @@ body {
 ========================= */
 
 .clock {
-
     position: relative;
 
-    width: min(78vw, 500px);
+    /* 500px o'rniga biroz kichikroq */
+    width: min(72vw, 440px);
 
     aspect-ratio: 1;
 
@@ -93,19 +81,17 @@ body {
         );
 
     box-shadow:
-
         0 0 0 3px var(--inner-ring),
-
         0 0 35px rgba(30, 64, 175, 0.35),
-
         inset 0 0 45px rgba(0, 0, 0, 0.55);
 }
 
 
-/* Ichki halqa */
+/* =========================
+   ICHKI HALQA
+========================= */
 
 .clock::after {
-
     content: "";
 
     position: absolute;
@@ -126,29 +112,24 @@ body {
 
 .numbers,
 .ticks {
-
     position: absolute;
 
     inset: 0;
 }
 
 
-.number {
+/* MUHIM:
+   Raqamlarni JS o'zi
+   aniq joylashtiradi
+*/
 
+.number {
     position: absolute;
 
-    left: 50%;
-
-    top: 50%;
-
-    width: 44px;
-
-    height: 44px;
-
-    margin: -22px;
+    width: 42px;
+    height: 42px;
 
     display: grid;
-
     place-items: center;
 
     font-size: clamp(17px, 3.2vw, 21px);
@@ -156,6 +137,10 @@ body {
     font-weight: 700;
 
     color: var(--text);
+
+    z-index: 2;
+
+    transform: translate(-50%, -50%);
 }
 
 
@@ -164,19 +149,15 @@ body {
 ========================= */
 
 .tick {
-
     position: absolute;
 
     left: 50%;
-
     top: 50%;
 
     width: 2px;
-
     height: 7px;
 
     margin-left: -1px;
-
     margin-top: -107px;
 
     transform-origin: 1px 107px;
@@ -187,16 +168,13 @@ body {
 }
 
 
-/* Har 5 minut */
+/* Har 5 minutdagi belgilar */
 
 .tick.major {
-
     width: 4px;
-
     height: 13px;
 
     margin-left: -2px;
-
     margin-top: -113px;
 
     transform-origin: 2px 113px;
@@ -210,11 +188,9 @@ body {
 ========================= */
 
 .hand {
-
     position: absolute;
 
     left: 50%;
-
     top: 50%;
 
     height: 3px;
@@ -227,10 +203,11 @@ body {
 }
 
 
-/* Soat */
+/* =========================
+   SOAT STRELKASI
+========================= */
 
 .hour {
-
     width: 25%;
 
     height: 10px;
@@ -242,10 +219,11 @@ body {
 }
 
 
-/* Minut */
+/* =========================
+   MINUT STRELKASI
+========================= */
 
 .minute {
-
     width: 35%;
 
     height: 7px;
@@ -257,10 +235,11 @@ body {
 }
 
 
-/* Sekund */
+/* =========================
+   SEKUND STRELKASI
+========================= */
 
 .second {
-
     width: 40%;
 
     height: 3px;
@@ -277,15 +256,12 @@ body {
 ========================= */
 
 .center-dot {
-
     position: absolute;
 
     left: 50%;
-
     top: 50%;
 
     width: 20px;
-
     height: 20px;
 
     transform: translate(-50%, -50%);
@@ -308,13 +284,11 @@ body {
 ========================= */
 
 .info {
-
-    margin-top: 34px;
+    margin-top: 30px;
 }
 
 
 .weekday {
-
     font-size: clamp(22px, 5vw, 28px);
 
     font-weight: 700;
@@ -331,7 +305,6 @@ body {
 ========================= */
 
 .date {
-
     margin-top: 8px;
 
     font-size: clamp(15px, 3vw, 18px);
@@ -345,7 +318,6 @@ body {
 ========================= */
 
 .digital {
-
     margin-top: 12px;
 
     font-size: clamp(42px, 10vw, 58px);
@@ -364,11 +336,10 @@ body {
 
 
 /* =========================
-   LOCATION
+   JOYLASHUV
 ========================= */
 
 .location {
-
     margin-top: 14px;
 
     font-size: 11px;
@@ -385,13 +356,23 @@ body {
 
 @media (max-width: 520px) {
 
-    .clock {
+    body {
+        overflow-y: auto;
+    }
 
+    .clock-app {
+        padding: 25px 0;
+    }
+
+    .clock {
         width: 78vw;
     }
 
     .info {
-
         margin-top: 25px;
+    }
+
+    .digital {
+        font-size: 44px;
     }
 }
