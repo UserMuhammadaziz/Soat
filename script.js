@@ -3,14 +3,19 @@
 // =========================
 
 const numbers = document.getElementById("numbers");
+
 const ticks = document.getElementById("ticks");
 
 const hourHand = document.getElementById("hour");
+
 const minuteHand = document.getElementById("minute");
+
 const secondHand = document.getElementById("second");
 
 const weekdayEl = document.getElementById("weekday");
+
 const dateEl = document.getElementById("date");
+
 const digitalEl = document.getElementById("digital");
 
 
@@ -50,7 +55,7 @@ const months = [
 
 
 // =========================
-// 1 - 12 RAQAMLAR
+// RAQAMLARNI JOYLASHTIRISH
 // =========================
 
 for (let i = 1; i <= 12; i++) {
@@ -61,20 +66,31 @@ for (let i = 1; i <= 12; i++) {
 
     number.textContent = i;
 
+
     // 12 tepada bo'lishi uchun
     const angle = (i * 30) - 90;
 
-    // Soat markazidan masofa
-    const radius = 42;
 
-    // Foizda joylashuv
-    const x = 50 + radius * Math.cos(angle * Math.PI / 180);
-    const y = 50 + radius * Math.sin(angle * Math.PI / 180);
+    // Markazdan masofa
+    const radius = 40;
+
+
+    // X koordinata
+    const x =
+        50 +
+        radius * Math.cos(angle * Math.PI / 180);
+
+
+    // Y koordinata
+    const y =
+        50 +
+        radius * Math.sin(angle * Math.PI / 180);
+
 
     number.style.left = `${x}%`;
+
     number.style.top = `${y}%`;
 
-    number.style.transform = "translate(-50%, -50%)";
 
     numbers.appendChild(number);
 }
@@ -88,13 +104,20 @@ for (let i = 0; i < 60; i++) {
 
     const tick = document.createElement("div");
 
-    tick.className =
-        i % 5 === 0
-            ? "tick major"
-            : "tick";
+
+    if (i % 5 === 0) {
+
+        tick.className = "tick major";
+
+    } else {
+
+        tick.className = "tick";
+    }
+
 
     tick.style.transform =
         `rotate(${i * 6}deg)`;
+
 
     ticks.appendChild(tick);
 }
@@ -108,12 +131,18 @@ function updateClock() {
 
     const now = new Date();
 
+
     const hours = now.getHours();
+
     const minutes = now.getMinutes();
+
     const seconds = now.getSeconds();
+
     const milliseconds = now.getMilliseconds();
 
-    // Sekund silliq harakat qiladi
+
+    // Sekundni silliq harakatlantirish
+
     const smoothSeconds =
         seconds + milliseconds / 1000;
 
@@ -126,9 +155,11 @@ function updateClock() {
         (hours % 12) * 30 +
         minutes * 0.5;
 
+
     const minuteAngle =
         minutes * 6 +
         smoothSeconds * 0.1;
+
 
     const secondAngle =
         smoothSeconds * 6;
@@ -137,22 +168,26 @@ function updateClock() {
     hourHand.style.transform =
         `rotate(${hourAngle - 90}deg)`;
 
+
     minuteHand.style.transform =
         `rotate(${minuteAngle - 90}deg)`;
+
 
     secondHand.style.transform =
         `rotate(${secondAngle - 90}deg)`;
 
 
     // =========================
-    // RAQAMLI SOAT
+    // RAQAMLI VAQT
     // =========================
 
     const hh =
         String(hours).padStart(2, "0");
 
+
     const mm =
         String(minutes).padStart(2, "0");
+
 
     digitalEl.textContent =
         `${hh}:${mm}`;
@@ -176,12 +211,14 @@ function updateClock() {
         } ${now.getFullYear()}`;
 
 
+    // Keyingi yangilanish
+
     requestAnimationFrame(updateClock);
 }
 
 
 // =========================
-// ISHGA TUSHIRISH
+// START
 // =========================
 
 updateClock();
