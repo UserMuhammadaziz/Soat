@@ -48,7 +48,7 @@ body {
 ========================= */
 
 .clock-app {
-    width: min(92vw, 700px);
+    width: min(95vw, 900px);
 
     text-align: center;
 }
@@ -61,7 +61,6 @@ body {
 .clock {
     position: relative;
 
-    /* 500px o'rniga biroz kichikroq */
     width: min(72vw, 440px);
 
     aspect-ratio: 1;
@@ -118,11 +117,6 @@ body {
 }
 
 
-/* MUHIM:
-   Raqamlarni JS o'zi
-   aniq joylashtiradi
-*/
-
 .number {
     position: absolute;
 
@@ -130,6 +124,7 @@ body {
     height: 42px;
 
     display: grid;
+
     place-items: center;
 
     font-size: clamp(17px, 3.2vw, 21px);
@@ -168,8 +163,6 @@ body {
 }
 
 
-/* Har 5 minutdagi belgilar */
-
 .tick.major {
     width: 4px;
     height: 13px;
@@ -203,9 +196,7 @@ body {
 }
 
 
-/* =========================
-   SOAT STRELKASI
-========================= */
+/* Soat */
 
 .hour {
     width: 25%;
@@ -219,9 +210,7 @@ body {
 }
 
 
-/* =========================
-   MINUT STRELKASI
-========================= */
+/* Minut */
 
 .minute {
     width: 35%;
@@ -235,9 +224,7 @@ body {
 }
 
 
-/* =========================
-   SEKUND STRELKASI
-========================= */
+/* Sekund */
 
 .second {
     width: 40%;
@@ -280,20 +267,36 @@ body {
 
 
 /* =========================
-   HAFTA KUNI
+   PASTKI MA'LUMOTLAR
 ========================= */
 
 .info {
     margin-top: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    flex-wrap: nowrap;
 }
 
 
+/* =========================
+   HAFTA KUNI
+========================= */
+
 .weekday {
-    font-size: clamp(22px, 5vw, 28px);
+    font-size: 24px;
 
     font-weight: 700;
 
     color: #38bdf8;
+
+    white-space: nowrap;
 
     text-shadow:
         0 0 14px rgba(56, 189, 248, 0.25);
@@ -305,11 +308,13 @@ body {
 ========================= */
 
 .date {
-    margin-top: 8px;
+    margin-top: 0;
 
-    font-size: clamp(15px, 3vw, 18px);
+    font-size: 17px;
 
     color: var(--muted);
+
+    white-space: nowrap;
 }
 
 
@@ -318,9 +323,9 @@ body {
 ========================= */
 
 .digital {
-    margin-top: 12px;
+    margin-top: 0;
 
-    font-size: clamp(42px, 10vw, 58px);
+    font-size: 42px;
 
     line-height: 1;
 
@@ -329,6 +334,8 @@ body {
     letter-spacing: 3px;
 
     color: #f8fafc;
+
+    white-space: nowrap;
 
     text-shadow:
         0 0 20px rgba(96, 165, 250, 0.28);
@@ -340,27 +347,31 @@ body {
 ========================= */
 
 .location {
-    margin-top: 14px;
+    margin-top: 0;
 
     font-size: 11px;
 
     letter-spacing: 3px;
 
     color: #64748b;
+
+    white-space: nowrap;
 }
 
 
 /* =========================
-   TELEFON
+   KICHIK EKRAN
 ========================= */
 
-@media (max-width: 520px) {
+@media (max-width: 700px) {
 
     body {
         overflow-y: auto;
     }
 
     .clock-app {
+        width: 95vw;
+
         padding: 25px 0;
     }
 
@@ -369,10 +380,24 @@ body {
     }
 
     .info {
-        margin-top: 25px;
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .weekday {
+        font-size: 21px;
+    }
+
+    .date {
+        font-size: 15px;
     }
 
     .digital {
-        font-size: 44px;
+        font-size: 35px;
+    }
+
+    .location {
+        font-size: 9px;
     }
 }
